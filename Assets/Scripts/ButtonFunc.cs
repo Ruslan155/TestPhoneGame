@@ -23,12 +23,21 @@ public class ButtonFunc : MonoBehaviour
     [SerializeField] private Button btn0;
     [SerializeField] private Button btnCall;
     [SerializeField] private Button btnReset;
+    [SerializeField] private Button btnBack;
+    [SerializeField] private Button btnClose;
+    [SerializeField] private Button btnAnimals;
+    [SerializeField] private Button btnAdd;
 
+    [Space(5)]
+    [Header("Texts")]
     [SerializeField] private Text textBar;
 
+    [Space(5)] [Header("Panels")] 
+    [SerializeField] private GameObject AddPanel;
     [SerializeField] private GameObject PanelMonkey;
     [SerializeField] private GameObject PanelDog;
     [SerializeField] private GameObject numberPanel;
+    [SerializeField] private GameObject AnimalsPanel;
 
     private void Start()
     {
@@ -174,7 +183,46 @@ public class ButtonFunc : MonoBehaviour
                 }
             });
         }
-        
+        if (btnAnimals != null)
+        {
+            btnAnimals.onClick.RemoveAllListeners();
+            btnAnimals.onClick.AddListener(() =>
+            {
+                ClickAnimation(btnAnimals);
+                numberPanel.SetActive(false);
+                AnimalsPanel.SetActive(true);
+                
+            });
+        }
+
+        if (btnBack != null)
+        {
+            btnBack.onClick.RemoveAllListeners();
+            btnBack.onClick.AddListener(() =>
+            {
+                ClickAnimation(btnBack);
+                AnimalsPanel.SetActive(false);
+                numberPanel.SetActive(true);
+            });
+        }
+
+        if (btnClose != null)
+        {
+            btnClose.onClick.RemoveAllListeners();
+            btnClose.onClick.AddListener(() =>
+            {
+                AddPanel.SetActive(true);
+            });
+        }
+
+        if (btnAdd != null)
+        {
+            btnAdd.onClick.RemoveAllListeners();
+            btnAdd.onClick.AddListener(() =>
+            {
+                AddPanel.SetActive(false);
+            });
+        }
     }
     
     private void ClickAnimation(Button btn)
