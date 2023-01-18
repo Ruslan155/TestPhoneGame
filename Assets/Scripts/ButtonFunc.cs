@@ -16,6 +16,11 @@ public class ButtonFunc : MonoBehaviour
     [SerializeField] private Button btn7;
     [SerializeField] private Button btn8;
     [SerializeField] private Button btn9;
+    [SerializeField] private Button btn0;
+    [SerializeField] private Button btnCall;
+    [SerializeField] private Button btnReset;
+
+    [SerializeField] private Text textBar;
 
     private void Start()
     {
@@ -29,7 +34,7 @@ public class ButtonFunc : MonoBehaviour
             btn1.onClick.RemoveAllListeners();
             btn1.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 1");
+                TextScript.Instance.EnterNumber(1, textBar);
             });
         }
 
@@ -38,7 +43,7 @@ public class ButtonFunc : MonoBehaviour
             btn2.onClick.RemoveAllListeners();
             btn2.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 2");
+                TextScript.Instance.EnterNumber(2, textBar);
             });
         }
 
@@ -47,7 +52,7 @@ public class ButtonFunc : MonoBehaviour
             btn3.onClick.RemoveAllListeners();
             btn3.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 3");
+                TextScript.Instance.EnterNumber(3, textBar);
             });
         }
         
@@ -56,7 +61,7 @@ public class ButtonFunc : MonoBehaviour
             btn4.onClick.RemoveAllListeners();
             btn4.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 4");
+                TextScript.Instance.EnterNumber(4, textBar);
             });
         }
         
@@ -65,7 +70,7 @@ public class ButtonFunc : MonoBehaviour
             btn5.onClick.RemoveAllListeners();
             btn5.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 5");
+                TextScript.Instance.EnterNumber(5, textBar);
             });
         }
         
@@ -74,7 +79,7 @@ public class ButtonFunc : MonoBehaviour
             btn6.onClick.RemoveAllListeners();
             btn6.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 6");
+                TextScript.Instance.EnterNumber(6, textBar);
             });
         }
         
@@ -83,7 +88,7 @@ public class ButtonFunc : MonoBehaviour
             btn7.onClick.RemoveAllListeners();
             btn7.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 7");
+                TextScript.Instance.EnterNumber(7, textBar);
             });
         }
         
@@ -92,7 +97,7 @@ public class ButtonFunc : MonoBehaviour
             btn8.onClick.RemoveAllListeners();
             btn8.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 8");
+                TextScript.Instance.EnterNumber(8, textBar);
             });
         }
         
@@ -101,7 +106,34 @@ public class ButtonFunc : MonoBehaviour
             btn9.onClick.RemoveAllListeners();
             btn9.onClick.AddListener(() =>
             {
-                Debug.Log("Touch number 9");
+                TextScript.Instance.EnterNumber(9, textBar);
+            });
+        }
+
+        if (btn0 != null)
+        {
+            btn0.onClick.RemoveAllListeners();
+            btn0.onClick.AddListener(() =>
+            {
+                TextScript.Instance.EnterNumber(0, textBar);
+            });
+        }
+        
+        if(btnCall != null)
+        {
+            btnCall.onClick.RemoveAllListeners();
+            btnCall.onClick.AddListener(() =>
+            {
+                Debug.Log("Call");
+            });
+        }
+
+        if (btnReset != null)
+        {
+            btnReset.onClick.RemoveAllListeners();
+            btnReset.onClick.AddListener(() =>
+            {
+                Debug.Log("Reset");
             });
         }
         
