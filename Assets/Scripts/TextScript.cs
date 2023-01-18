@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class TextScript 
 {
      #region Singleton
@@ -26,7 +27,7 @@ public class TextScript
 
      public void EnterNumber(int numb, Text text)
      {
-          if (text.text == "0000")
+          if (text.text == "Номер")
           {
                FirstNumber(numb, text);
           }

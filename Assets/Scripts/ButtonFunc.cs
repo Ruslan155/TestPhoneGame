@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 public class ButtonFunc : MonoBehaviour
 {
+    private int numb;
+    
     [Header("Buttons")]
     [SerializeField] private Button btn1;
     [SerializeField] private Button btn2;
@@ -22,6 +26,10 @@ public class ButtonFunc : MonoBehaviour
 
     [SerializeField] private Text textBar;
 
+    [SerializeField] private GameObject PanelMonkey;
+    [SerializeField] private GameObject PanelDog;
+    [SerializeField] private GameObject numberPanel;
+
     private void Start()
     {
         Initialize();
@@ -35,6 +43,7 @@ public class ButtonFunc : MonoBehaviour
             btn1.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(1, textBar);
+                ClickAnimation(btn1);
             });
         }
 
@@ -44,6 +53,7 @@ public class ButtonFunc : MonoBehaviour
             btn2.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(2, textBar);
+                ClickAnimation(btn2);
             });
         }
 
@@ -53,6 +63,7 @@ public class ButtonFunc : MonoBehaviour
             btn3.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(3, textBar);
+                ClickAnimation(btn3);
             });
         }
         
@@ -62,6 +73,7 @@ public class ButtonFunc : MonoBehaviour
             btn4.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(4, textBar);
+                ClickAnimation(btn4);
             });
         }
         
@@ -71,6 +83,7 @@ public class ButtonFunc : MonoBehaviour
             btn5.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(5, textBar);
+                ClickAnimation(btn5);
             });
         }
         
@@ -80,6 +93,7 @@ public class ButtonFunc : MonoBehaviour
             btn6.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(6, textBar);
+                ClickAnimation(btn6);
             });
         }
         
@@ -89,6 +103,7 @@ public class ButtonFunc : MonoBehaviour
             btn7.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(7, textBar);
+                ClickAnimation(btn7);
             });
         }
         
@@ -98,6 +113,7 @@ public class ButtonFunc : MonoBehaviour
             btn8.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(8, textBar);
+                ClickAnimation(btn8);
             });
         }
         
@@ -107,6 +123,7 @@ public class ButtonFunc : MonoBehaviour
             btn9.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(9, textBar);
+                ClickAnimation(btn9);
             });
         }
 
@@ -116,6 +133,7 @@ public class ButtonFunc : MonoBehaviour
             btn0.onClick.AddListener(() =>
             {
                 TextScript.Instance.EnterNumber(0, textBar);
+                ClickAnimation(btn0);
             });
         }
         
@@ -124,7 +142,16 @@ public class ButtonFunc : MonoBehaviour
             btnCall.onClick.RemoveAllListeners();
             btnCall.onClick.AddListener(() =>
             {
-                Debug.Log("Call");
+                ClickAnimation(btnCall);
+                if (textBar.text.Length > 5)
+                {
+                    PanelsScript.Instance.OpenPanel(numberPanel, PanelMonkey, new Vector2(0,3));
+                }
+
+                if (textBar.text.Length < 5)
+                {
+                    PanelsScript.Instance.OpenPanel(numberPanel, PanelDog, new Vector2(0,3));
+                }
             });
         }
 
@@ -133,9 +160,26 @@ public class ButtonFunc : MonoBehaviour
             btnReset.onClick.RemoveAllListeners();
             btnReset.onClick.AddListener(() =>
             {
-                Debug.Log("Reset");
+                ClickAnimation(btnReset);
+                if (textBar.text.Length > 5)
+                {
+                    PanelsScript.Instance.ClosePanel(numberPanel, PanelMonkey, new Vector2(0, 8));
+                    textBar.text = "Номер";
+                }
+
+                if (textBar.text.Length < 5)
+                {
+                    PanelsScript.Instance.ClosePanel(numberPanel, PanelDog, new Vector2(0, 8));
+                    textBar.text = "Номер";
+                }
             });
         }
         
+    }
+    
+    private void ClickAnimation(Button btn)
+    {
+        DOTween.Sequence().Append(btn.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.3f))
+            .Append(btn.transform.DOScale(new Vector3(1, 1, 1), 0.3f));
     }
 }
